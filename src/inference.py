@@ -9,8 +9,8 @@ import os
 import matplotlib.pyplot as plt
 
 # Load YOLO models
-model_v5 = YOLO('yolov5s.pt')  # YOLOv5 small model
-model_v7 = YOLO('yolov7.pt')   # YOLOv7 model
+model_v5 = YOLO('yolov5n.pt')  # YOLOv5 nano model
+model_v8 = YOLO('yolov8n.pt')   # YOLOv8 model
 model_v10 = YOLO('yolov10n.pt') # YOLOv10 model
 
 # Load and process image
@@ -19,7 +19,7 @@ image = cv2.imread(image_path)
 
 # Get predictions from each model
 results_v5 = model_v5(image)
-results_v7 = model_v7(image)
+results_v8 = model_v8(image)
 results_v10 = model_v10(image)
 
 def extract_boxes(results):
@@ -32,7 +32,7 @@ def extract_boxes(results):
     return boxes
 
 boxes_v5 = extract_boxes(results_v5)
-boxes_v7 = extract_boxes(results_v7)
+boxes_v8 = extract_boxes(results_v8)
 boxes_v10 = extract_boxes(results_v10)
 
 def iou(box1, box2):
@@ -52,9 +52,9 @@ def iou(box1, box2):
     union = w1 * h1 + w2 * h2 - intersection
     return intersection / union if union > 0 else 0
 
-def ensemble_boxes(pred_v5, pred_v7, pred_v10, iou_threshold=0.5):
+def ensemble_boxes(pred_v5, pred_v8, pred_v10, iou_threshold=0.5):
     """Ensemble bounding boxes from three models based on IoU threshold."""
-    all_boxes = pred_v5 + pred_v7 + pred_v10
+    all_boxes = pred_v5 + pred_v8 + pred_v10
     final_boxes = []
 
     while all_boxes:
@@ -73,7 +73,7 @@ def ensemble_boxes(pred_v5, pred_v7, pred_v10, iou_threshold=0.5):
     return final_boxes
 
 # Apply ensemble method
-ensemble_boxes_list = ensemble_boxes(boxes_v5, boxes_v7, boxes_v10)
+ensemble_boxes_list = ensemble_boxes(boxes_v5, boxes_v8, boxes_v10)
 
 def draw_boxes(image, boxes, color=(0, 255, 0)):
     """Draw bounding boxes on image."""
