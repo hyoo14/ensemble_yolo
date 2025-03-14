@@ -1,4 +1,4 @@
-# ensemble_yolo
+# Ensemble Yolo
 
 
 This project contains an example code that can be executed in Google Colab.  
