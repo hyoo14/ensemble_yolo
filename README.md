@@ -27,14 +27,14 @@ Deep learning-based object detection models, such as YOLO, perform well in real-
 
 ## Results
 
-The ensemble model **outperforms individual YOLO models** in recall and F1-score, demonstrating improved robustness:
+The ensemble model **outperforms individual YOLO nano models** in F1-score and MAE, demonstrating improved robustness with COCO 2017 validation dataset:
 
 | Model  | Precision | Recall  | F1-score | MAE (Vehicle Count) |
 |--------|----------|--------|---------|------------------|
 | YOLOv5  | 1.0000   | 0.8576 | 0.8576  | 1.7809 |
 | YOLOv8  | 1.0000   | 0.7773 | 0.8576  | 1.7809 |
 | YOLOv10 | 1.0000   | 0.7287 | 0.8576  | 1.9560 |
-| **Ensemble** | 1.0000   | **0.8148** | **0.8980**  | **1.6609** |
+| **Ensemble** | 1.0000   | 0.8148 | **0.8980**  | **1.6609** |
 
 The ensemble model achieves the **highest recall and F1-score**, minimizing false negatives while improving vehicle counting accuracy.
 
